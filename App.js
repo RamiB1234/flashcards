@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, StatusBar, Platform } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation'
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import Constants from 'expo-constants'
 import {Entypo, MaterialCommunityIcons} from '@expo/vector-icons'
 
 // Components:
 import CreateDeck from './components/CreateDeck'
-import Deck from './components/Deck'
 import DeckList from './components/DeckList'
-import NewQuestion from './components/NewQuestion'
-import Quiz from './components/Quiz'
+import Deck from './components/Deck'
 
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
@@ -55,12 +53,27 @@ const Tabs = createBottomTabNavigator({
   } 
 })
 
+const Stack = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    } 
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions:{
+      title: "Deck"
+    }
+  }
+})
+
 export default class App extends Component {
   render() {
     return (
       <View style={{flex:1}}>
         <FlashcardsStatusBar backgroundColor='red' barStyle='light-content' />
-        <Tabs/>
+        <Stack/>
       </View>
     );
   }

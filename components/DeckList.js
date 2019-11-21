@@ -13,6 +13,8 @@ const list = [
     },
 ]
 
+
+
 class DeckList extends Component {
     render() {
         const { navigate } = this.props.navigation;
@@ -26,7 +28,7 @@ class DeckList extends Component {
                             title={l.deckName}
                             subtitle={l.numberOfCards+ ' cards'}
                             bottomDivider
-                            onPress={() => navigate('CreateDeck')}
+                            onPress={() => navigate('Deck')}
                         />
                     ))
                 }
