@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 class Deck extends Component{
     render(){
+      const { navigate } = this.props.navigation;
         return(
             <View style={styles.center}>
                 <Text style={{fontSize: 30, textAlign: 'center'}}>Create Deck</Text>
@@ -14,8 +15,11 @@ class Deck extends Component{
                         3 Cards
                     </Text>    
                 <TouchableOpacity
-                style={styles.submitButton}>
-                <Text style={styles.submitButtonText}>Add Card</Text>
+                style={styles.submitButton}
+                onPress={()=> navigate('NewQuestion')}>
+                <Text style={styles.submitButtonText}>
+                  Add Question
+                </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={styles.submitButton}>

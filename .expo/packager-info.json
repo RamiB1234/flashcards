@@ -1,9 +1,9 @@
 {
-  "expoServerNgrokUrl": "https://2u-ukd.ramib1234.flashcards.exp.direct",
-  "packagerNgrokUrl": "https://packager.2u-ukd.ramib1234.flashcards.exp.direct",
-  "ngrokPid": 18380,
+  "expoServerNgrokUrl": "https://va-r6c.ramib1234.flashcards.exp.direct",
+  "packagerNgrokUrl": "https://packager.va-r6c.ramib1234.flashcards.exp.direct",
+  "ngrokPid": 22652,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 21648
+  "packagerPid": 23264
 }

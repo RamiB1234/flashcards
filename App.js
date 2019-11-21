@@ -8,6 +8,7 @@ import {Entypo, MaterialCommunityIcons} from '@expo/vector-icons'
 import CreateDeck from './components/CreateDeck'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
+import NewQuestion from './components/NewQuestion'
 
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
@@ -64,6 +65,12 @@ const Stack = createStackNavigator({
     screen: Deck,
     navigationOptions:{
       title: "Deck"
+    }
+  },
+  NewQuestion: {
+    screen: NewQuestion,
+    navigationOptions:{
+      title: "New Question"
     }
   }
 })
