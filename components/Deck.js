@@ -22,7 +22,8 @@ class Deck extends Component{
                 </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                style={styles.submitButton}>
+                style={styles.submitButton}
+                onPress={()=> navigate('Quiz')}>
                 <Text style={styles.submitButtonText}>Start Quiz</Text>
                 </TouchableOpacity>
             </View>

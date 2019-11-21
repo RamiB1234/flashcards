@@ -9,6 +9,7 @@ import CreateDeck from './components/CreateDeck'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
 import NewQuestion from './components/NewQuestion'
+import Quiz from './components/Quiz'
 
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
@@ -71,6 +72,12 @@ const Stack = createStackNavigator({
     screen: NewQuestion,
     navigationOptions:{
       title: "New Question"
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions:{
+      title: "Quiz"
     }
   }
 })
