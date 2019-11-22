@@ -11,6 +11,9 @@ import Deck from './components/Deck'
 import NewQuestion from './components/NewQuestion'
 import Quiz from './components/Quiz'
 
+import {getDecks, getDeck, saveDeckTitle, addCardToDeck} from './utils/api'
+import { apisAreAvailable } from 'expo';
+
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
   return(
@@ -84,6 +87,8 @@ const Stack = createStackNavigator({
 
 export default class App extends Component {
   render() {
+    getDecks().then(d => console.log(d));
+
     return (
       <View style={{flex:1}}>
         <FlashcardsStatusBar backgroundColor='red' barStyle='light-content' />
