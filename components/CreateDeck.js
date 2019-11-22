@@ -3,11 +3,16 @@ import { Text, View,StyleSheet, TextInput, TouchableOpacity, Platform } from 're
 
 
 class CreateDeck extends Component{
+    state = {
+        deckName : ""
+    }
     submit = () => {
         const { navigate } = this.props.navigation;
         navigate('DeckList')
     }
+
     render(){
+        const {deckName} = this.state
         return(
             <View style={styles.center}>
                 <Text style={{fontSize: 30, textAlign: 'center'}}>Create Deck</Text>
@@ -17,11 +22,14 @@ class CreateDeck extends Component{
                     </Text>
                     <TextInput
                     style={{ height: 40, width: 170, borderColor: 'gray', borderWidth: 1 }}
+                    value={deckName}
+                    onChangeText = {(text) => { this.setState({ deckName: text})}}
                     />             
                 </View>
                 <TouchableOpacity
-                style={styles.submitButton}
-                onPress={this.submit}>
+                style={deckName === '' ? styles.submitButtonDisabled : styles.submitButton}
+                onPress={this.submit}
+                disabled = {deckName === ''}>
                 <Text style={styles.submitButtonText}>Submit</Text>
                 </TouchableOpacity>
             </View>
@@ -45,6 +53,19 @@ const styles = StyleSheet.create({
       },
       submitButton: {
         backgroundColor: 'purple',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height:45,
+        borderRadius:10,
+        borderWidth: 1,
+        borderColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      submitButtonDisabled: {
+        backgroundColor: '#cccccc',
+        color: '#666666',
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,

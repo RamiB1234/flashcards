@@ -3,7 +3,12 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 
 
 class NewQuestion extends Component{
+    state={
+        question : '',
+        answer: ''
+    }
     render(){
+        const {question, answer} = this.state
         return(
             <View style={styles.center}>
                 <Text style={{fontSize: 30, textAlign: 'center'}}>New Question</Text>
@@ -13,6 +18,8 @@ class NewQuestion extends Component{
                     </Text>
                     <TextInput
                     style={{ height: 40, width: 170, borderColor: 'gray', borderWidth: 1 }}
+                    value={question}
+                    onChangeText = {(text) => { this.setState({ question: text})}}
                     />             
                 </View>
                 <View style={styles.row}>
@@ -21,11 +28,14 @@ class NewQuestion extends Component{
                     </Text>
                     <TextInput
                     style={{ height: 40, width: 170, borderColor: 'gray', borderWidth: 1 }}
+                    value={answer}
+                    onChangeText = {(text) => { this.setState({ answer: text})}}
                     />             
                 </View>
                 <TouchableOpacity
-                style={styles.submitButton}
-                onPress={this.submit}>
+                style={question === '' || answer === '' ? styles.submitButtonDisabled : styles.submitButton}
+                onPress={this.submit}
+                disabled = {question === '' || answer === ''}>
                 <Text style={styles.submitButtonText}>Submit</Text>
                 </TouchableOpacity>
             </View>
@@ -49,6 +59,19 @@ const styles = StyleSheet.create({
       },
       submitButton: {
         backgroundColor: 'purple',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height:45,
+        borderRadius:10,
+        borderWidth: 1,
+        borderColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      submitButtonDisabled: {
+        backgroundColor: '#cccccc',
+        color: '#666666',
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
