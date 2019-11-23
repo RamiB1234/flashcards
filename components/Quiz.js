@@ -91,9 +91,10 @@ class Quiz extends Component {
             )
         }
         else{ // Show score:
+            const percentage = Math.round((100 * correctAnswers) / numberOfQuestions)
             return(
                 <View style={styles.center}>
-                    <Text style={{ fontSize: 30, textAlign: 'center' }}>Your score: 70%</Text>
+                    <Text style={{ fontSize: 30, textAlign: 'center' }}>Your score: {percentage}%</Text>
                     <Text style={{ fontSize: 25, textAlign: 'center' }}>{correctAnswers}/{numberOfQuestions}</Text>
                     <View style={styles.row}>
                         <TouchableOpacity
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
-        height: 55,
+        height: 60,
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#fff',
