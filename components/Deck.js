@@ -3,20 +3,38 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 
 class Deck extends Component{
+    state={
+      title: '',
+      numberOfQuestions: 0
+    }
+    loadDeck = () =>{
+      const { title } = this.props.navigation.state.params
+      const {getDeck} = this.props.screenProps
+      getDeck(title).then((r)=> this.setState({
+        title: title,
+        numberOfQuestions: r.questions.length
+      }))
+    }
+    componentDidMount() {
+      this.focusListener = this.props.navigation.addListener('didFocus', () => {
+        this.loadDeck()
+      })
+    }
     render(){
-      const { navigate } = this.props.navigation;
+      const { navigate } = this.props.navigation
+      const {title, numberOfQuestions} = this.state
+
         return(
             <View style={styles.center}>
-                <Text style={{fontSize: 30, textAlign: 'center'}}>Create Deck</Text>
-                <Text style={{fontSize: 20, textAlign: 'center'}}>
-                        Deck Name Here
+                <Text style={{fontSize: 30, textAlign: 'center'}}>
+                    {title}
                     </Text>
                     <Text style={{fontSize: 15, textAlign: 'center'}}>
-                        3 Cards
+                        {numberOfQuestions} Cards
                     </Text>    
                 <TouchableOpacity
                 style={styles.submitButton}
-                onPress={()=> navigate('NewQuestion')}>
+                onPress={()=> navigate('NewQuestion', {title: title})}>
                 <Text style={styles.submitButtonText}>
                   Add Question
                 </Text>

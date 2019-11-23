@@ -7,6 +7,17 @@ class NewQuestion extends Component{
         question : '',
         answer: ''
     }
+    submit = () => {
+        const { goBack } = this.props.navigation;
+        const {addQuestion} = this.props.screenProps
+        const { title } = this.props.navigation.state.params
+        const card = {
+            queestion: this.state.question,
+            answer: this.state.answer
+        }
+        addQuestion(title, card)
+        goBack()
+    }
     render(){
         const {question, answer} = this.state
         return(

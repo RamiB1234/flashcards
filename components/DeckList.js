@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements'
 
 const list = [
@@ -16,24 +16,44 @@ const list = [
 
 
 class DeckList extends Component {
+
+    reloadDeckList = () =>{
+        const {getDecks} = this.props.screenProps
+        getDecks()
+    }
+    componentDidMount(){
+        // Force updating the list after naavigation:
+        this.focusListener = this.props.navigation.addListener('didFocus', () => {
+            this.reloadDeckList()
+          })
+    }
     render() {
         const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.center}>
-                <Text style={{fontSize: 30, textAlign: 'center'}}>Deck List</Text>
-                {
-                    list.map((l, i) => (
-                        <ListItem
-                            key={i}
-                            title={l.deckName}
-                            subtitle={l.numberOfCards+ ' cards'}
-                            bottomDivider
-                            onPress={() => navigate('Deck')}
-                        />
-                    ))
-                }
-            </View>
-        )
+        const {decks} = this.props.screenProps
+        if(Object.keys(decks).length>0){
+            return (
+                <ScrollView style={{ backgroundColor: "white", flex: 1 }}>
+                    <View style={styles.center}>
+                        <Text style={{fontSize: 30, textAlign: 'center'}}>Deck List</Text>
+                        {
+                            Object.values(decks).map((l, i) => (
+                                <ListItem
+                                    key={i}
+                                    title={l.title}
+                                    subtitle={l.questions.length+' Cards'}
+                                    bottomDivider
+                                    onPress={() => navigate('Deck',{title: l.title})}
+                                />
+                            ))
+                        }
+                    </View>
+                </ScrollView>
+            )
+        }
+        else{
+            return <View><Text>F</Text></View>
+        }
+
     }
 }
 

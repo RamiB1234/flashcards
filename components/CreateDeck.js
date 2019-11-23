@@ -8,6 +8,8 @@ class CreateDeck extends Component{
     }
     submit = () => {
         const { navigate } = this.props.navigation;
+        const {addDeckTitle} = this.props.screenProps
+        addDeckTitle(this.state.deckName)
         navigate('DeckList')
     }
 
