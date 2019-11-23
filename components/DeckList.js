@@ -30,7 +30,7 @@ class DeckList extends Component {
     render() {
         const { navigate } = this.props.navigation;
         const {decks} = this.props.screenProps
-        if(Object.keys(decks).length>0){
+        if(decks && Object.keys(decks).length>0){
             return (
                 <ScrollView style={{ backgroundColor: "white", flex: 1 }}>
                     <View style={styles.center}>
@@ -51,7 +51,9 @@ class DeckList extends Component {
             )
         }
         else{
-            return <View><Text>F</Text></View>
+            return <View style={styles.centerReal}>
+                <Text>Nothing to show</Text>
+            </View>
         }
 
     }
@@ -61,6 +63,16 @@ const styles = StyleSheet.create({
     center: {
         flex: 1,
         justifyContent: 'flex-start',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 50,
+        marginBottom: 50
+    },
+    centerReal: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignContent: 'center',
         marginLeft: 30,
         marginRight: 30,
         marginTop: 50,

@@ -4,42 +4,87 @@ import FlipCard from 'react-native-flip-card'
 
 
 class Quiz extends Component {
+    state = {
+        questions: [],
+        currentQuestionNumber: 1,
+        numberOfQuestions: 0
+    }
+    markCorrectAnswer = () => {
+
+        // Increase counter:
+        this.setState((prevState) => ({
+            currentQuestionNumber: prevState + 1
+        }))
+    }
+    martIncorrectAnswer = () => {
+
+        // Increase counter:
+        this.setState((prevState) => ({
+            currentQuestionNumber: prevState + 1
+        }))
+
+    }
+
+    loadQuestions = () => {
+        const { title } = this.props.navigation.state.params
+        const {getDeck} = this.props.screenProps
+
+        getDeck(title).then((r)=> this.setState({
+            questions: r.questions,
+            numberOfQuestions: r.questions.length
+          }))
+
+    }
+    componentDidMount() {
+        this.focusListener = this.props.navigation.addListener('didFocus', () => {
+            this.loadQuestions()
+    })
+}
     render() {
-        return (
-            <View style={styles.center}>
-                <Text style={{ fontSize: 30, textAlign: 'center' }}>Quiz</Text>
-                <FlipCard>
-                    {/* Face Side */}
-                    <View style={styles.face}>
-                        <Text>Question</Text>
-                        <Text>bla bla bla bla bla bla bla bla bla?</Text>
+        const {questions, currentQuestionNumber, numberOfQuestions} = this.state
+
+        if(currentQuestionNumber <= numberOfQuestions){
+            return (
+                <View style={styles.center}>
+                    <Text style={{ fontSize: 30, textAlign: 'center' }}>Quiz</Text>
+                    <FlipCard>
+                        {/* Face Side */}
+                        <View style={styles.face}>
+                            <Text>Question</Text>
+                            <Text>{questions[currentQuestionNumber-1].question}</Text>
+                        </View>
+                        {/* Back Side */}
+                        <View style={styles.back}>
+                            <Text>Answer</Text>
+                            <Text>{questions[currentQuestionNumber-1].answer}</Text>
+                        </View>
+                    </FlipCard>
+                    <View style={styles.row}>
+                        <TouchableOpacity onPress={this.markCorrectAnswer}
+                            style={styles.submitButton}>
+                            <Text style={styles.submitButtonText}>Correct</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={this.martIncorrectAnswer}
+                            style={styles.submitButton}>
+                            <Text style={styles.submitButtonText}>Incorrect</Text>
+                        </TouchableOpacity>
                     </View>
-                    {/* Back Side */}
-                    <View style={styles.back}>
-                        <Text>Answer</Text>
-                        <Text>bla bla bla bla bla bla :D</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 20 }}>
+                            Question {currentQuestionNumber}/{numberOfQuestions}
+                        </Text>
+                        <Text style={{ fontSize: 10 }}>
+                            Tab on the card to flip
+                        </Text>
                     </View>
-                </FlipCard>
-                <View style={styles.row}>
-                    <TouchableOpacity
-                        style={styles.submitButton}>
-                        <Text style={styles.submitButtonText}>Correct</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.submitButton}>
-                        <Text style={styles.submitButtonText}>Incorrect</Text>
-                    </TouchableOpacity>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 20 }}>
-                        Question 2/3
-                    </Text>
-                    <Text style={{ fontSize: 10 }}>
-                        Tab on the card to flip
-                    </Text>
-                </View>
-            </View>
-        )
+            )
+        }
+        else{
+            return(
+                <View><Text>d</Text></View>
+            )
+        }
     }
 }
 
@@ -79,9 +124,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow',
         flex: 1
     },
-    back:{
+    back: {
         backgroundColor: 'red',
-        flex:1
+        flex: 1
     }
 
 })

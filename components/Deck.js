@@ -40,8 +40,9 @@ class Deck extends Component{
                 </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                style={styles.submitButton}
-                onPress={()=> navigate('Quiz')}>
+                style={numberOfQuestions === 0 ? styles.submitButtonDisabled : styles.submitButton}
+                disabled = {numberOfQuestions === 0}
+                onPress={()=> navigate('Quiz', {title: title})}>
                 <Text style={styles.submitButtonText}>Start Quiz</Text>
                 </TouchableOpacity>
             </View>
@@ -65,6 +66,19 @@ const styles = StyleSheet.create({
       },
       submitButton: {
         backgroundColor: 'purple',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height:45,
+        borderRadius:10,
+        borderWidth: 1,
+        borderColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      submitButtonDisabled: {
+        backgroundColor: '#cccccc',
+        color: '#666666',
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,

@@ -12,7 +12,7 @@ class NewQuestion extends Component{
         const {addQuestion} = this.props.screenProps
         const { title } = this.props.navigation.state.params
         const card = {
-            queestion: this.state.question,
+            question: this.state.question,
             answer: this.state.answer
         }
         addQuestion(title, card)
