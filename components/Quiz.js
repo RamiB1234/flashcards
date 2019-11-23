@@ -60,12 +60,12 @@ class Quiz extends Component {
                     <FlipCard>
                         {/* Face Side */}
                         <View style={styles.face}>
-                            <Text>Question</Text>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Question</Text>
                             <Text>{questions[currentQuestionNumber-1].question}</Text>
                         </View>
                         {/* Back Side */}
                         <View style={styles.back}>
-                            <Text>Answer</Text>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Answer</Text>
                             <Text>{questions[currentQuestionNumber-1].answer}</Text>
                         </View>
                     </FlipCard>

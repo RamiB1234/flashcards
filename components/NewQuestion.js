@@ -23,28 +23,24 @@ class NewQuestion extends Component{
         return(
             <View style={styles.center}>
                 <Text style={{fontSize: 30, textAlign: 'center'}}>New Question</Text>
-                <View style={styles.row}>
-                    <Text style={{fontSize: 20}}>
+                <Text style={{fontSize: 20}}>
                         Question:
                     </Text>
                     <TextInput
-                    style={{ height: 40, width: 170, borderColor: 'gray', borderWidth: 1 }}
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1}}
                     value={question}
                     onChangeText = {(text) => { this.setState({ question: text})}}
-                    />             
-                </View>
-                <View style={styles.row}>
+                    />  
                     <Text style={{fontSize: 20}}>
                         Answer:
                     </Text>
                     <TextInput
-                    style={{ height: 40, width: 170, borderColor: 'gray', borderWidth: 1 }}
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                     value={answer}
                     onChangeText = {(text) => { this.setState({ answer: text})}}
-                    />             
-                </View>
+                    />   
                 <TouchableOpacity
-                style={question === '' || answer === '' ? styles.submitButtonDisabled : styles.submitButton}
+                style={[question === '' || answer === '' ? styles.submitButtonDisabled : styles.submitButton, {marginTop: 20}]}
                 onPress={this.submit}
                 disabled = {question === '' || answer === ''}>
                 <Text style={styles.submitButtonText}>Submit</Text>
