@@ -7,20 +7,22 @@ class Quiz extends Component {
     state = {
         questions: [],
         currentQuestionNumber: 1,
-        numberOfQuestions: 0
+        numberOfQuestions: 0,
+        correctAnswers: 0
     }
     markCorrectAnswer = () => {
 
         // Increase counter:
         this.setState((prevState) => ({
-            currentQuestionNumber: prevState + 1
+            currentQuestionNumber: prevState.currentQuestionNumber + 1,
+            correctAnswers: prevState.correctAnswers +1
         }))
     }
     martIncorrectAnswer = () => {
 
         // Increase counter:
         this.setState((prevState) => ({
-            currentQuestionNumber: prevState + 1
+            currentQuestionNumber: prevState.currentQuestionNumber + 1
         }))
 
     }
@@ -35,13 +37,21 @@ class Quiz extends Component {
           }))
 
     }
+
+    resetQuiz = () => {
+        this.setState({
+            correctAnswers: 0,
+            currentQuestionNumber: 1,
+        })
+    }
     componentDidMount() {
         this.focusListener = this.props.navigation.addListener('didFocus', () => {
             this.loadQuestions()
     })
 }
     render() {
-        const {questions, currentQuestionNumber, numberOfQuestions} = this.state
+        const {questions, currentQuestionNumber, numberOfQuestions, correctAnswers} = this.state
+        const { goBack } = this.props.navigation
 
         if(currentQuestionNumber <= numberOfQuestions){
             return (
@@ -80,9 +90,22 @@ class Quiz extends Component {
                 </View>
             )
         }
-        else{
+        else{ // Show score:
             return(
-                <View><Text>d</Text></View>
+                <View style={styles.center}>
+                    <Text style={{ fontSize: 30, textAlign: 'center' }}>Your score: 70%</Text>
+                    <Text style={{ fontSize: 25, textAlign: 'center' }}>{correctAnswers}/{numberOfQuestions}</Text>
+                    <View style={styles.row}>
+                        <TouchableOpacity
+                            style={styles.submitButton} onPress={this.resetQuiz}>
+                            <Text style={styles.submitButtonText}>Restart Quiz</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.submitButton} onPress={()=> goBack()}>
+                            <Text style={styles.submitButtonText}>Back to Deck</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             )
         }
     }
@@ -108,7 +131,7 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
-        height: 45,
+        height: 55,
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#fff',
