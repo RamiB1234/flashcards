@@ -10,7 +10,7 @@ class CreateDeck extends Component{
         const { navigate } = this.props.navigation;
         const {addDeckTitle} = this.props.screenProps
         addDeckTitle(this.state.deckName)
-        navigate('DeckList')
+        navigate('Deck', {title: this.state.deckName})
     }
 
     render(){
