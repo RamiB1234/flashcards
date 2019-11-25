@@ -1,17 +1,15 @@
 {
-  "name": "flashcards",
-  "displayName": "Flash Cards",
   "expo": {
     "name": "flashcards",
-    "slug": "expo-template-bare",
-    "privacy": "unlisted",
-    "sdkVersion": "35.0.0",
-    "version": "1.0.0",
-    "entryPoint": "node_modules/expo/AppEntry.js",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ]
+   "version": "1.0.0",
+   "slug": "expo-template-bare",
+   "sdkVersion": "35.0.0",
+   "entryPoint": "node_modules/expo/AppEntry.js",
+   "ios": {
+     "bundleIdentifier": "com.yourcompany.yourappname"
+   },
+   "android": {
+     "package": "com.yourcompany.yourappname"
+   }
   }
 }

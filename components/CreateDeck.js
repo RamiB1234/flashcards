@@ -9,7 +9,15 @@ class CreateDeck extends Component{
     submit = () => {
         const { navigate } = this.props.navigation;
         const {addDeckTitle} = this.props.screenProps
+
+        // API
         addDeckTitle(this.state.deckName)
+
+        // Clear deckname:
+        this.setState({
+          deckName: ""
+        })
+
         navigate('Deck', {title: this.state.deckName})
     }
 
