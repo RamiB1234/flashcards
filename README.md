@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
-Flashcards is an app that lets the users to create deck of cards of any topic and test themselves by looking at the frontside of the card, guessing the answer and flip the cards to make sure their answer is correct. It will also show their score by marking eash guess correct or wrong.
+Flashcards is a mobile app that lets the users to create deck of cards of any topic and test themselves by looking at the frontside of the card, guessing the answer and flip the cards to make sure their answer is correct. It will also show their score by marking eash guess correct or wrong.
 
 ##### Feature summary:
   - Show all created card deck lists along with the number of cards in each deck
@@ -23,6 +23,12 @@ To get started testing right away:
 This application was developed using the beautiful **React** framework
 
 ![React Logo](/images/react.png)
+
+### Testing Info
+
+* OS: Android 9
+* Device: Samusung Note 9
+* The device was tested using **expo** app
 
 ### License
 The project is released under [MIT](https://github.com/RamiB1234/would-you-rather/blob/master/LICENSE) License
