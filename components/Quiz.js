@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import FlipCard from 'react-native-flip-card'
+import {setLocalNotification, clearLocalNotifications} from '../utils/helpers'
 
 
 class Quiz extends Component {
@@ -30,6 +31,10 @@ class Quiz extends Component {
     loadQuestions = () => {
         const { title } = this.props.navigation.state.params
         const {getDeck} = this.props.screenProps
+
+        // Reset notifciations:
+        clearLocalNotifications()
+        setLocalNotification()
 
         getDeck(title).then((r)=> this.setState({
             questions: r.questions,

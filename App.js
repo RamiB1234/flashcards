@@ -3,6 +3,7 @@ import { Text, View, StatusBar, Platform } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import Constants from 'expo-constants'
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
+import {setLocalNotification} from './utils/helpers'
 
 // Components:
 import CreateDeck from './components/CreateDeck'
@@ -89,6 +90,7 @@ export default class App extends Component {
     decks: {}
   }
   componentDidMount() {
+    setLocalNotification()
     this.getDecks()
   }
 
